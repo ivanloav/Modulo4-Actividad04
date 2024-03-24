@@ -147,12 +147,12 @@
   align-items: center;
   justify-content: space-around;
   text-align: center;
-  width: 70%;  
+  width: 100%;  
 }
 
 .pokeType div, img {
-  width: 3vw;
-  height: 3vw;
+  width: 60px;
+  height: auto;
 }
 
 .pokeType p {
@@ -177,7 +177,7 @@
   grid-template-columns: repeat(2, 1fr); /* Dos columnas */
   gap: 10px; /* Espacio entre ítems */
   width: 350px; /* El contenedor de las debilidades */
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 25px;
 }
 
@@ -192,4 +192,8 @@
   margin-left: 15px;
   color: white;
   font-weight: bold;
+}
+
+.text-black {
+  color: black !important;
 }

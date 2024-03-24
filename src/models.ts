@@ -35,7 +35,6 @@ export type Pokemon = {
   weight: number;
   height: number;
   abilities: PokemonAbility[];
-  weakness?: PokemonType[];
   sprites: {
     front_default: string;
   };

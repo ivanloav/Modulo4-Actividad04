@@ -8,6 +8,5 @@
 ### How to
 
 ```bash
-npm install react-icons
 npm i && npm run dev
 ```

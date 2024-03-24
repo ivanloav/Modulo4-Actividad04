@@ -6,6 +6,8 @@ import { randomMode } from "utils/random";
 import { Button } from "./button";
 import { LedDisplay } from "./led-display";
 
+import { weaknesses, typeTranslations } from "../@types/pokemon-weakness-translation";
+
 import "./pokedex.css";
 
 export function Pokedex() {
@@ -31,30 +33,9 @@ export function Pokedex() {
     }
     setI((i) => i + 1);
   };
-
+/* **************************************************************************************** */
   const BASE_SRC_IMG = "/src/assets/types/";
-
-  const weaknesses: { [key: string]: string[] } = {
-    bug: ["fire", "flying", "rock"],
-    dark: ["bug", "fairy", "fighting"],
-    dragon: ["dragon", "fairy", "ice"],
-    electric: ["ground"],
-    fairy: ["poison", "steel"],
-    fighting: ["fairy", "flying", "psychic"],
-    fire: ["ground", "rock", "water"],
-    flying: ["electric", "ice", "rock"],
-    ghost: ["dark", "ghost"],
-    grass: ["bug", "fire", "flying", "ice", "poison"],
-    ground: ["grass", "ice", "water"],
-    ice: ["fighting", "fire", "rock", "steel"],
-    normal: ["fighting"],
-    poison: ["ground", "psychic"],
-    psychic: ["bug", "dark", "ghost"],
-    rock: ["fighting", "grass", "ground", "steel", "water"],
-    steel: ["fighting", "fire", "ground"],
-    water: ["electric", "grass"],
-  };
-
+  
   const getCombinedWeaknesses = (types: string[]) => {
     const allWeaknesses: string[] = [];
     types.forEach(type => {
@@ -70,9 +51,13 @@ export function Pokedex() {
     return allWeaknesses;
   };
 
+  const translateType = (type: string): string => {
+    return typeTranslations[type.toLowerCase()] || type;
+  };
+
   // Obtener las debilidades combinadas para los tipos del Pokémon
   const pokemonWeaknesses = getCombinedWeaknesses(selectedPokemon?.types.map(({ type }) => type.name) || []);
-
+/* **************************************************************************************** */
   return (
     <div className={c("pokedex", `pokedex-${theme}`)}>
       <div className="pokeWeakness">
@@ -81,7 +66,7 @@ export function Pokedex() {
             {pokemonWeaknesses.map((weakness, index) => (
               <div className="weaknessesImg" key={index}>
                 <img src={BASE_SRC_IMG + weakness + ".webp"} alt={weakness} />
-                <p>{weakness}</p>
+                <p className={c({ 'text-black': theme === 'yellow' })}>{translateType(weakness)}</p>
               </div>
             ))}
           </div>
@@ -117,7 +102,7 @@ export function Pokedex() {
           {selectedPokemon?.types.map((typeEntry, index) => (
             <div key={index}>
               <img src={BASE_SRC_IMG + typeEntry.type.name + ".webp"} alt={typeEntry.type.name} />
-              <p>{typeEntry.type.name}</p>
+              <p className={c({ 'text-black': theme === 'yellow' })}>{translateType(typeEntry.type.name)}</p>
             </div>
           ))}
         </div>
