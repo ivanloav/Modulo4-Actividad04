@@ -114,7 +114,7 @@ return (
       <div className="pokeType">
         {selectedPokemon?.types.map((typeEntry, index) => (
           <div key={index}>
-            <img src={BASE_SRC_IMG + typeEntry.type.name + ".webp"} alt={typeEntry.type.name} />
+            <img src={BASE_SRC_IMG + typeEntry.type.name + ".png"} alt={typeEntry.type.name} />
             <p className={c({ 'text-black': theme === 'yellow' })}>{translateType(typeEntry.type.name)}</p>
           </div>
         ))}
