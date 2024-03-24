@@ -37,7 +37,7 @@ export function Pokedex() {
     }
     setI((i) => i + 1);
   };
-/* **************************************************************************************** */
+
   const BASE_SRC_IMG = "/src/assets/img/";
   
   const getCombinedWeaknesses = (types: string[]) => {
@@ -70,7 +70,7 @@ export function Pokedex() {
       alert("Tu equipo ya está completo o el Pokémon ya está en el equipo.");
     }
   };
-/* **************************************************************************************** */
+
 return (
   <div className={c("pokedex", `pokedex-${theme}`)}>
     <div className="pokeWeakness">
