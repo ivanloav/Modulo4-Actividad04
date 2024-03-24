@@ -78,7 +78,7 @@ return (
         <div className="weaknessesImg-container">
           {pokemonWeaknesses.map((weakness, index) => (
             <div className="weaknessesImg" key={index}>
-              <img src={BASE_SRC_IMG + weakness + ".webp"} alt={weakness} />
+              <img src={BASE_SRC_IMG + weakness + ".png"} alt={weakness} />
               <p className={c({ 'text-black': theme === 'yellow' })}>{translateType(weakness)}</p>
             </div>
           ))}
