@@ -32,8 +32,60 @@ export function Pokedex() {
     setI((i) => i + 1);
   };
 
+  const BASE_SRC_IMG = "/src/assets/types/";
+
+  const weaknesses: { [key: string]: string[] } = {
+    bug: ["fire", "flying", "rock"],
+    dark: ["bug", "fairy", "fighting"],
+    dragon: ["dragon", "fairy", "ice"],
+    electric: ["ground"],
+    fairy: ["poison", "steel"],
+    fighting: ["fairy", "flying", "psychic"],
+    fire: ["ground", "rock", "water"],
+    flying: ["electric", "ice", "rock"],
+    ghost: ["dark", "ghost"],
+    grass: ["bug", "fire", "flying", "ice", "poison"],
+    ground: ["grass", "ice", "water"],
+    ice: ["fighting", "fire", "rock", "steel"],
+    normal: ["fighting"],
+    poison: ["ground", "psychic"],
+    psychic: ["bug", "dark", "ghost"],
+    rock: ["fighting", "grass", "ground", "steel", "water"],
+    steel: ["fighting", "fire", "ground"],
+    water: ["electric", "grass"],
+  };
+
+  const getCombinedWeaknesses = (types: string[]) => {
+    const allWeaknesses: string[] = [];
+    types.forEach(type => {
+      const typeWeaknesses = weaknesses[type];
+      if (typeWeaknesses) {
+        typeWeaknesses.forEach(weakness => {
+          if (!allWeaknesses.includes(weakness)) {
+            allWeaknesses.push(weakness);
+          }
+        });
+      }
+    });
+    return allWeaknesses;
+  };
+
+  // Obtener las debilidades combinadas para los tipos del Pokémon
+  const pokemonWeaknesses = getCombinedWeaknesses(selectedPokemon?.types.map(({ type }) => type.name) || []);
+
   return (
     <div className={c("pokedex", `pokedex-${theme}`)}>
+      <div className="pokeWeakness">
+          <h3>Debilidades</h3>
+          <div className="weaknessesImg-container">
+            {pokemonWeaknesses.map((weakness, index) => (
+              <div className="weaknessesImg" key={index}>
+                <img src={BASE_SRC_IMG + weakness + ".webp"} alt={weakness} />
+                <p>{weakness}</p>
+              </div>
+            ))}
+          </div>
+      </div>
       <div className="panel left-panel">
         <div className="screen main-screen">
           {selectedPokemon && (
@@ -60,6 +112,14 @@ export function Pokedex() {
           >
             {selectedPokemon?.name}
           </div>
+        </div>
+        <div className="pokeType">
+          {selectedPokemon?.types.map((typeEntry, index) => (
+            <div key={index}>
+              <img src={BASE_SRC_IMG + typeEntry.type.name + ".webp"} alt={typeEntry.type.name} />
+              <p>{typeEntry.type.name}</p>
+            </div>
+          ))}
         </div>
       </div>
       <div className="panel right-panel">

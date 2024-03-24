@@ -20,7 +20,7 @@ export function usePokemon(pokemonUri: PokemonUri) {
         setIsLoading(false);
       }
     };
-
+    
     if (!pokemonUri) return;
 
     if (cache.has(pokemonUri.url)) {
@@ -33,3 +33,4 @@ export function usePokemon(pokemonUri: PokemonUri) {
 
   return { pokemon, isLoading };
 }
+
