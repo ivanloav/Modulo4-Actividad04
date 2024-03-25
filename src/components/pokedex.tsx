@@ -38,7 +38,7 @@ export function Pokedex() {
     setI((i) => i + 1);
   };
 
-  const BASE_SRC_IMG = "/src/assets/img/";
+  const BASE_SRC_IMG = "/public/assets/img/";
   
   const getCombinedWeaknesses = (types: string[]) => {
     const allWeaknesses: string[] = [];
