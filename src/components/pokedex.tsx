@@ -59,10 +59,8 @@ export function Pokedex() {
     return typeTranslations[type.toLowerCase()] || type;
   };
 
-  // Obtener las debilidades combinadas para los tipos del Pokémon
   const pokemonWeaknesses = getCombinedWeaknesses(selectedPokemon?.types.map(({ type }) => type.name) || []);
   
-  // Función para manejar la adición de Pokémon al equipo
   const handleAddToTeam = () => {
     if (selectedPokemon && selectedTeam.length < 6 && !selectedTeam.find(p => p.id === selectedPokemon.id)) {
       setSelectedTeam(prev => [...prev, selectedPokemon]);
